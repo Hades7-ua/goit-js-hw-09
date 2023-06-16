@@ -54,7 +54,7 @@ function countdown({
   secondsEl.textContent = second;
   //   return { days, hours, minutes, seconds };
 }
-console.log(countdown);
+// console.log(countdown);
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
