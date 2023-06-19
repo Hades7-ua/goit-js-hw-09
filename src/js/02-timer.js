@@ -4,11 +4,14 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 const startButton = document.querySelector('[data-start]');
-const daysEl = document.querySelector('[data-days]');
-const hoursEl = document.querySelector('[data-hours]');
-const minutesEl = document.querySelector('[data-minutes]');
-const secondsEl = document.querySelector('[data-seconds]');
-// const values = document.querySelectorAll('value');
+const daysEl = document.querySelector('.value[data-days]');
+const hoursEl = document.querySelector('.value[data-hours]');
+const minutesEl = document.querySelector('.value[data-minutes]');
+const secondsEl = document.querySelector('.value[data-seconds]');
+
+let targetDate = null;
+
+startButton.setAttribute('disabled', '');
 
 const options = {
   enableTime: true,
@@ -19,6 +22,8 @@ const options = {
     if (selectedDates[0] - new Date() < 1000) {
       window.alert('Please choose a date in the future');
     }
+    targetDate = selectedDates[0];
+    startButton.disabled = false;
   },
 };
 
@@ -28,30 +33,28 @@ const flatpickr = flatpickr(input, options);
 startButton.addEventListener('click', timer);
 
 function timer() {
+  startButton.disabled = false;
   let counter = setInterval(() => {
     const currentDate = new Date(input.value);
-    console.log(currentDate);
+    // console.log(currentDate);
     const differenceTime = currentDate - Date.now();
-    console.log(differenceTime);
-    if (differenceTime < 1000) {
+    console.log(targetDate);
+    if (String(targetDate) === String(new Date())) {
       clearInterval(counter);
-      countdown();
+      // countdown();
       return;
     }
     const date = convertMs(differenceTime);
+
     countdown(date);
   }, 1000);
 }
-function countdown({
-  day = '00',
-  hour = '00',
-  minute = '00',
-  second = '00',
-} = {}) {
-  daysEl.textContent = day;
-  hoursEl.textContent = hour;
-  minutesEl.textContent = minute;
-  secondsEl.textContent = second;
+function countdown({ days, hours, minutes, seconds }) {
+  console.log(seconds);
+  daysEl.textContent = days;
+  hoursEl.textContent = hours;
+  minutesEl.textContent = minutes;
+  secondsEl.textContent = seconds;
   //   return { days, hours, minutes, seconds };
 }
 // console.log(countdown);
