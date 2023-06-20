@@ -33,3 +33,5 @@ function handleFormSubmit(e) {
     firstDelay += delayStep;
   }
 }
+
+// На ноуті все працює, на GitHub немає білда
