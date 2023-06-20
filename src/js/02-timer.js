@@ -47,7 +47,7 @@ function timer() {
     const date = convertMs(differenceTime);
 
     countdown(date);
-  }, 1000);
+  }, 100);
 }
 function countdown({ days, hours, minutes, seconds }) {
   console.log(seconds);
