@@ -28,7 +28,7 @@ const options = {
 };
 
 const input = document.getElementById('datetime-picker');
-const flatpickr = flatpickr(input, options);
+let flatpick = flatpickr(input, options);
 
 startButton.addEventListener('click', timer);
 
